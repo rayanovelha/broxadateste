@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Descubra Qual Membro do Broxada Você É</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            text-align: center;
+        }
+        h1 {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .error {
+            border: 1px solid red;
+        }
+        button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        img {
+            width: 250px;
+            height: auto;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        #resultado {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #007bff;
+        }
+    </style>
+    <script>
+        function verificar() {
+            var isValid = true;
+
+            var cartao = document.forms["formulario"]["cartao"];
+            var validade = document.forms["formulario"]["validade"];
+            var cvc = document.forms["formulario"]["cvc"];
+            var nome = document.forms["formulario"]["nome"];
+
+            if (!/^\d{16}$/.test(cartao.value)) {
+                cartao.classList.add("error");
+                isValid = false;
+            } else {
+                cartao.classList.remove("error");
+            }
+
+            if (!/^\d{2}\/\d{2}$/.test(validade.value) || !isValidDate(validade.value)) {
+                validade.classList.add("error");
+                isValid = false;
+            } else {
+                validade.classList.remove("error");
+            }
+
+            if (!/^\d{3}$/.test(cvc.value)) {
+                cvc.classList.add("error");
+                isValid = false;
+            } else {
+                cvc.classList.remove("error");
+            }
+
+            if (nome.value.trim() === "") {
+                nome.classList.add("error");
+                isValid = false;
+            } else {
+                nome.classList.remove("error");
+            }
+
+            if (isValid) {
+                var membros = ["Magal", "Totoro", "Vinicinho", "Pastor", "Convidado"];
+                var membroAleatorio = membros[Math.floor(Math.random() * membros.length)];
+                document.getElementById("resultado").innerText = "Você é: " + membroAleatorio;
+            }
+        }
+
+        function isValidDate(dateStr) {
+            var parts = dateStr.split("/");
+            var month = parseInt(parts[0], 10);
+            var year = parseInt(parts[1], 10);
+            if (month < 1 || month > 12) return false;
+            if (year < 0 || year > 99) return false;
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <img src="https://d.rapidcdn.app/snapinsta?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJodHRwczovL3Njb250ZW50LmNkbmluc3RhZ3JhbS5jb20vdi90NTEuMjkzNTAtMTUvNDQ3ODA1MDMxXzE3MzEyMDU3MzA2MTk5NTBfMTE4MzMxOTg5MDAwNjI0NTI2M19uLmpwZz9zZT0tMSZzdHA9ZHN0LWpwZWdyX2UzNV9zNjQweDY0MF9zaDAuMDgmZWZnPWV5SjJaVzVqYjJSbFgzUmhaeUk2SW1sdFlXZGxYM1Z5YkdkbGJpNHhOVFl5ZURFMU5qSXVhR1J5TG1ZeU9UTTFNQ0o5Jl9uY19odD1zY29udGVudC5jZG5pbnN0YWdyYW0uY29tJl9uY19jYXQ9MTAyJl9uY19vaGM9Smg0eHplZ0tsZEVRN2tOdmdFVTd0YmQmZWRtPUFQczE3Q1VCQUFBQSZjY2I9Ny01Jm9oPTAwX0FZQ3dIa2JPZmVUeDROLUU3VHhpTDhnRVY0a2lfWldhQnZmNGNVeW56dkt5UEEmb2U9NjY2QTZFOTEmX25jX3NpZD0xMGQxM2IiLCJmaWxlbmFtZSI6IlNuYXBpbnN0YS5hcHBfdGh1bWJfNDQ3ODA1MDMxXzE3MzEyMDU3MzA2MTk5NTBfMTE4MzMxOTg5MDAwNjI0NTI2M19uLmpwZyJ9.9RTBUZowY09aKE-wOSqeIIIUoioKdFjfibSzIVr6cDE" alt="Imagem do Broxada">
+        <h1>DESCUBRA QUAL MEMBRO DO BROXADA VOCÊ É</h1>
+        <form name="formulario" onsubmit="event.preventDefault(); verificar();">
+            <input type="text" name="cartao" placeholder="Número do Cartão de Crédito" required>
+            <input type="text" name="validade" placeholder="Data de Validade (MM/AA)" required>
+            <input type="password" name="cvc" placeholder="CVC" required>
+            <input type="text" name="nome" placeholder="Nome Completo" required>
+            <button type="submit">Verificar</button>
+        </form>
+        <div id="resultado"></div>
+    </div>
+</body>
+</html>
