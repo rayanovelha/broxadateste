@@ -86,7 +86,7 @@
                 membroAleatorio = membros[Math.floor(Math.random() * membros.length)];
             }
 
-            window.alert("Você é: " + membroAleatorio);
+            window.alert(formulario["nome"].value + " é: " + membroAleatorio);
         }
     </script>
 </head>
@@ -95,10 +95,10 @@
         <img src="imagem.jpg" alt="Imagem do Broxada" width="400" height="300">
         <h1>DESCUBRA QUAL MEMBRO DO BROXADA VOCÊ É</h1>
         <form name="formulario" onsubmit="event.preventDefault(); verificar();">
-            <input type="text" name="cartao" placeholder="Cartão de Crédito (16 dígitos)" required>
-            <input type="text" name="validade" placeholder="Data de Validade (MM/AA)" required>
-            <input type="password" name="cvc" placeholder="CVC (3 dígitos)" required>
-            <input type="text" name="nome" placeholder="Nome Completo" required>
+            <input type="text" name="cartao" placeholder="Cartão de Crédito (16 dígitos)" autocomplete="cc-number" required>
+            <input type="text" name="validade" placeholder="Data de Validade (MM/AA)" autocomplete="cc-exp" required>
+            <input type="password" name="cvc" placeholder="CVC (3 dígitos)" autocomplete="cc-csc" required>
+            <input type="text" name="nome" placeholder="Nome Completo" autocomplete="cc-name" required>
             <button type="submit">Verificar</button>
         </form>
         <div id="resultado"></div>
